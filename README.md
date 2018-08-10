@@ -7,7 +7,7 @@ This application scrapes the New York Times homepage for articles that contain a
 
 ## `Packages and Technologies`
 
-Articles and notes are stored as object within a MongoDB database.
+Articles and notes are stored as objects within a MongoDB database.
 This application uses the following NPM packages:
 * body-parser
 * cheerio
