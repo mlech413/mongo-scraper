@@ -42,11 +42,11 @@ $.getJSON("/savedarticles", function(data) {
       // The title of the article
       $("#notes").append("<h2>" + data.title + "</h2>");
       // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title' >");
+      $("#notes").append("<input id='titleinput' placeholder='Give it a title...' name='title' >");
       // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      $("#notes").append("<textarea id='bodyinput' placeholder='...and write your notes here.' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#notes").append("<button class='btn btn-default' data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
       // If there's a note in the article
       if (data.note) {
@@ -79,7 +79,7 @@ $(document).on("click", "#savenote", function() {
       // Log the response
       console.log(data);
       // Empty the notes section
-      $("#notes").html("<br><br><br><br><br><br><font color='green'><h1>Note Saved!</h1></font>");
+      $("#notes").html("<br><br><br><br><br><br><font color='lightgray'><h1>Note Saved!</h1></font>");
     });
 
   // Also, remove the values entered in the input and textarea for note entry

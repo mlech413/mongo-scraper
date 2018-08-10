@@ -18,14 +18,14 @@ body {
   textarea, input {
     display: block;
     width: 100%;
-    background-color: #FCF5C7;
+    background-color: lightgray;
   }
   input {
     height: 36px;
     font-size: 24px;
   }
   textarea {
-    height: 200px;
+    height: 300px;
     font-size: 18px;
   }
   hr {
