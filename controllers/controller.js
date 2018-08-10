@@ -44,7 +44,8 @@ router.get("/scrape", function(req, res) {
             console.log(dbArticle);
             })
             .catch(function(err) {
-            return res.json(err);
+              console.log("Duplicate story ignored.");
+            // return res.json(err);
             });
 
         }
@@ -136,6 +137,21 @@ router.post("/save-article/:id", function(req, res) {
         res.json(err);
       });
   });
+
+  // Route for removing from saved list
+router.post("/remove-from-saved/:id", function(req, res) {
+  console.log("router.post /remove-from-saved/:id")
+  console.log("req.params.id=" + req.params.id)
+    db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: false })
+    .then(function(dbArticle) {
+      res.json("REMOVE SUCCESSFUL FOR " + req.params.id);
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.json("REMOVE ERROR FOR " + req.params.id);
+      res.json(err);
+    });
+});
 
 // delete all
 router.post("/erase-all", function(req, res) {

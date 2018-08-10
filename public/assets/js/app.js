@@ -22,7 +22,7 @@ $.getJSON("/savedarticles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#saved-articles").append("<p data-id='" + data[i]._id + "'><strong>" + data[i].title + "</strong><br />" + data[i].summary + "<br /><a href='" + data[i].link  + "'>" + data[i].link + "</a></p>");
+    $("#saved-articles").append("<p data-id='" + data[i]._id + "'><strong>" + data[i].title + "</strong><br />" + data[i].summary + "<br /><a href='" + data[i].link  + "'>" + data[i].link + "</a></p><button class='btn btn-danger' data-id='" + data[i]._id + "' id='delete-from-saved-button'>Remove From Saved</button><br><br><hr><br>");
   }
 });
 
@@ -104,8 +104,24 @@ $(document).on("click", "#save-article-button", function() {
       console.log(data);
       location.reload();
     });
+});
 
- 
+// When you click the save article button
+$(document).on("click", "#delete-from-saved-button", function() {
+  // Grab the id associated with the article from the submit button
+  var thisId = $(this).attr("data-id");
+
+  // Run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "POST",
+    url: "/remove-from-saved/" + thisId
+  })
+    // With that done
+    .then(function(data) {
+      // Log the response
+      console.log(data);
+      location.reload();
+    });
 });
 
 // someone clicks the scrape articles button
