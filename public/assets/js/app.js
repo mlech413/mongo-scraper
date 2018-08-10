@@ -22,7 +22,7 @@ $.getJSON("/savedarticles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#saved-articles").append("<p data-id='" + data[i]._id + "'><strong>" + data[i].title + "</strong><br />" + data[i].summary + "<br />" + data[i].link  + "</p>");
+    $("#saved-articles").append("<p data-id='" + data[i]._id + "'><strong>" + data[i].title + "</strong><br />" + data[i].summary + "<br /><a href='" + data[i].link  + "'>" + data[i].link + "</a></p>");
   }
 });
 
