@@ -11,7 +11,7 @@ $.getJSON("/articles", function(data) {
       saveButtonHtml="<button class='btn btn-default' data-id='" + data[i]._id + "' id='save-article-button'>Save Article</button><br><br><hr><br>";
     };
     // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'><strong>" + data[i].title + "</strong><br />" + data[i].summary + "<br />" + data[i].link  + "</p><button class='btn btn-default'  data-id='" + data[i]._id + "' id='add-notes-button'>&nbsp;Add Notes&nbsp;</button>&nbsp;&nbsp;&nbsp;" + saveButtonHtml);
+    $("#articles").append("<p data-id='" + data[i]._id + "'><strong>" + data[i].title + "</strong><br />" + data[i].summary + "<br /><a href='" + data[i].link  + "'>" + data[i].link + "</a></p><button class='btn btn-default'  data-id='" + data[i]._id + "' id='add-notes-button'>&nbsp;Add Notes&nbsp;</button>&nbsp;&nbsp;&nbsp;" + saveButtonHtml);
   }
 });
 
@@ -79,7 +79,7 @@ $(document).on("click", "#savenote", function() {
       // Log the response
       console.log(data);
       // Empty the notes section
-      $("#notes").empty();
+      $("#notes").html("<br><br><br><br><br><br><font color='green'><h1>Note Saved!</h1></font>");
     });
 
   // Also, remove the values entered in the input and textarea for note entry

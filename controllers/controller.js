@@ -38,14 +38,12 @@ router.get("/scrape", function(req, res) {
                 .children("p.summary")
                 .text();
        
-            // Create a new Article using the `result` object built from scraping
+        // Create a new Article using the `result` object built from scraping
         db.Article.create(result)
             .then(function(dbArticle) {
-            // View the added result in the console
             console.log(dbArticle);
             })
             .catch(function(err) {
-            // If an error occurred, send it to the client
             return res.json(err);
             });
 
@@ -60,19 +58,16 @@ router.get("/scrape", function(req, res) {
 });
 
 
-// Route for getting saved Articles from the db
+// Route for getting saved Articles
 router.get("/savedarticles", function(req, res) {
     console.log("router.get /savedarticles")
-    // Grab every document in the Saved Articles collection
     db.Article.find({
         "saved" : true
     })
       .then(function(dbArticle) {
-        // If we were able to successfully find Articles, send them back to the client
         res.json(dbArticle);
       })
       .catch(function(err) {
-        // If an error occurred, send it to the client
         res.json(err);
       });
       
@@ -81,22 +76,17 @@ router.get("/savedarticles", function(req, res) {
 
 
 
-// Route for getting all Articles from the db
+// Route for getting all Articles
 router.get("/articles", function(req, res) {
     console.log("router.get /articles")
-  // Grab every document in the Articles collection
   db.Article.find({})
     .then(function(dbArticle) {
-      // If we were able to successfully find Articles, send them back to the client
       res.json(dbArticle);
     })
     .catch(function(err) {
-      // If an error occurred, send it to the client
       res.json(err);
     });
 });
-
-
 
 // Route for grabbing a specific Article by id, populate it with it's note
 router.get("/articles/:id", function(req, res) {
@@ -106,11 +96,9 @@ router.get("/articles/:id", function(req, res) {
     // ..and populate all of the notes associated with it
     .populate("note")
     .then(function(dbArticle) {
-      // If we were able to successfully find an Article with the given id, send it back to the client
       res.json(dbArticle);
     })
     .catch(function(err) {
-      // If an error occurred, send it to the client
       res.json(err);
     });
 });
@@ -127,11 +115,9 @@ router.post("/articles/:id", function(req, res) {
       return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
     })
     .then(function(dbArticle) {
-      // If we were able to successfully update an Article, send it back to the client
       res.json(dbArticle);
     })
     .catch(function(err) {
-      // If an error occurred, send it to the client
       res.json(err);
     });
 });
@@ -142,16 +128,13 @@ router.post("/save-article/:id", function(req, res) {
     console.log("req.params.id=" + req.params.id)
       db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true })
       .then(function(dbArticle) {
-        // If we were able to successfully update an Article, send it back to the client
         res.json("UPDATE SUCCESSFUL FOR " + req.params.id);
         res.json(dbArticle);
       })
       .catch(function(err) {
         res.json("UPDATE ERROR FOR " + req.params.id);
-        // If an error occurred, send it to the client
         res.json(err);
       });
-    //   res.render("index");
   });
 
 // delete all
@@ -162,7 +145,6 @@ router.post("/erase-all", function(req, res) {
         console.log("All articles deleted.")
       })
       .catch(function(err) {
-        // If an error occurred, send it to the client
         res.json(err);
       });
 
@@ -171,7 +153,6 @@ router.post("/erase-all", function(req, res) {
         console.log("All notes deleted.")
       })
       .catch(function(err) {
-        // If an error occurred, send it to the client
         res.json(err);
       });
       
@@ -186,7 +167,6 @@ router.post("/erase-saved", function(req, res) {
         console.log("All articles updated to UNSAVED.")
       })
       .catch(function(err) {
-        // If an error occurred, send it to the client
         res.json(err);
       });
 

@@ -7,9 +7,7 @@ body {
     }
   #articles {
     display: inline-block;
-    /* overflow: auto; */
     width: 70%;
-    /* height: 700px; */
   }
   #notes {
     float: right;
