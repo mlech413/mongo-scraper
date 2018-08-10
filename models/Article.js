@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
 
+// unique to avoid duplicates
 var ArticleSchema = new Schema({
   title: {
     type: String,

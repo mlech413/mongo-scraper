@@ -4,6 +4,7 @@ $.getJSON("/articles", function(data) {
   let saveButtonHtml=""
   // For each one
   for (var i = 0; i < data.length; i++) {
+    // after saving article, disable 'save article' button and change button text to 'article saved' 
     if (data[i].saved) {
       saveButtonHtml="<button class='btn btn-default disabled' data-id='" + data[i]._id + "' id='save-article-button'>Article Saved</button><br><br><hr><br>";
     }
@@ -78,7 +79,7 @@ $(document).on("click", "#savenote", function() {
     .then(function(data) {
       // Log the response
       console.log(data);
-      // Empty the notes section
+      // message displayed after saving a note
       $("#notes").html("<br><br><br><br><br><br><font color='lightgray'><h1>Note Saved!</h1></font>");
     });
 
