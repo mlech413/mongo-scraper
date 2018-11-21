@@ -2,9 +2,9 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var cheerio = require("cheerio");
-var request = require("request");
-var logger = require("morgan"); 
+// var cheerio = require("cheerio");
+// var request = require("request");
+// var logger = require("morgan"); 
 
 // Require all models
 var db = require("./models");
